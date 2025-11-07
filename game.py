@@ -8,7 +8,7 @@ class TicTacToe:
         self.current_winner=None
     def print_board(self):
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
-            print('| ' + '|'.join(row)+ '|')
+            print('| ' + '| '.join(row)+ ' |')
 
     @staticmethod
     def print_board_nums():
@@ -27,7 +27,7 @@ class TicTacToe:
     
     def make_move(self,square,letter):
         if self.board[square]==' ':
-            self.board[square]==letter
+            self.board[square]=letter
             if self.winner(square,letter):
                 self.current_winner=letter
             return True
@@ -40,18 +40,18 @@ class TicTacToe:
             return True
         
         #check column
-        col_ind=square%3
+        col_ind=square % 3
         column=[self.board[col_ind+i+3] for i in range (3)]
         if all([spot==letter for spot in column]):
             return 
         
         #check diagonal
-        if square%2 ==0:
+        if square % 2 ==0:
             diagonal1=[self.board[i] for i in [0,4,8]] #left to right diagonal
-            if all([spot==letter for spot in row]):
+            if all([spot==letter for spot in diagonal1]):
                 return True
             diagonal2=[self.board[i] for i in [2,4,6]]
-            if all([spot==letter for spot in row]):
+            if all([spot==letter for spot in diagonal2]):
                 return True
         
         # if all these fail
@@ -84,7 +84,7 @@ def play(game,x_player,o_player,print_game=True):
                     print(letter+ ' Wins!')
                 return letter
             # after we make the move wqe need to alternate letters
-            letter='O' if letter =='X' else 'X'
+            letter='O' if letter == 'X' else 'X'
         # tiny pause
         time.sleep(0.8)
     if print_game:
