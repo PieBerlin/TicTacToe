@@ -1,7 +1,7 @@
 import time
 from player import HumanPlayer, RandomComputerPlayer,GeniusComputerPlayer
 
-# The Player classes (HumanPlayer and RandomComputerPlayer) are assumed to be in a separate file named player.py
+
 # For completeness, here is a basic implementation of those classes:
 # ------------------ Start player.py content (for testing locally) ------------------
 import random
@@ -134,15 +134,27 @@ def play(game, x_player, o_player, print_game=True):
             letter = 'O' if letter == 'X' else 'X'
 
         # tiny pause
-        time.sleep(0.8)
+        if print_game:
+            time.sleep(0.8)
 
     # This part of the code is only reached if the while loop finishes without a winner (a tie)
     if print_game:
         print('It\'s a tie!')
 
 if __name__ == '__main__':
-    # Fix 5: Ensure the computer player is instantiated with 'O' not '0'
-    x_player = HumanPlayer('X')
-    o_player = GeniusComputerPlayer('O')
-    t = TicTacToe()
-    play(t, x_player, o_player, print_game=True)
+    x_wins=0
+    o_wins=0
+    ties=0
+    for _ in range(10):
+        x_player = RandomComputerPlayer('X')
+        o_player = GeniusComputerPlayer('O')
+        t = TicTacToe()
+        result=play(t, x_player, o_player, print_game=True)
+        if result=='X':
+            x_wins+=1
+        elif result=='O':
+            o_wins+=1
+        else:
+            ties+=1
+    
+    print(f"After 10 plays , X wins {x_wins}, O wins{o_wins} and {ties} Ties")

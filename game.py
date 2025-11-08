@@ -34,14 +34,14 @@ class TicTacToe:
         return False
     
     def winner(self,square,letter):
-        row_ind=square//3
+        row_ind=square // 3
         row=self.board[row_ind*3 : (row_ind + 1) * 3]
         if all([spot==letter for spot in row]):
             return True
         
         #check column
         col_ind=square % 3
-        column=[self.board[col_ind+i+3] for i in range (3)]
+        column=[self.board[col_ind+i*3] for i in range (3)]
         if all([spot==letter for spot in column]):
             return 
         
@@ -64,7 +64,7 @@ def play(game,x_player,o_player,print_game=True):
     if print_game:
         game.print_board_nums()
     
-    letter='X' #starting letter
+    letter = 'X' #starting letter
     #iterate while the game ha empty squares
     while game.empty_squares():
         #get move from approp player
