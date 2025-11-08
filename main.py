@@ -1,5 +1,5 @@
 import time
-#from player import HumanPlayer, RandomComputerPlayer
+from player import HumanPlayer, RandomComputerPlayer,GeniusComputerPlayer
 
 # The Player classes (HumanPlayer and RandomComputerPlayer) are assumed to be in a separate file named player.py
 # For completeness, here is a basic implementation of those classes:
@@ -143,6 +143,6 @@ def play(game, x_player, o_player, print_game=True):
 if __name__ == '__main__':
     # Fix 5: Ensure the computer player is instantiated with 'O' not '0'
     x_player = HumanPlayer('X')
-    o_player = RandomComputerPlayer('O')
+    o_player = GeniusComputerPlayer('O')
     t = TicTacToe()
     play(t, x_player, o_player, print_game=True)
